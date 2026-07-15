@@ -118,13 +118,13 @@ function App() {
     setEditingTaskId(task.id);
     setEditTitie(task.title);
     setEditDesc(task.description);
-  }
+  };
 
   const cancelEditing = () => {
     setEditingTaskId(null);
     setEditTitie("");
     setEditDesc("");
-  }
+  };
 
   const saveEditedTask = (taskId) => {
     if (!editTitle.trim()) return;
@@ -135,11 +135,11 @@ function App() {
           return {
             ...task,
             title: editTitle,
-            description: editDesc
+            description: editDesc,
           };
         }
         return task;
-      })
+      }),
     );
     setEditingTaskId(null);
   };
@@ -296,7 +296,7 @@ function App() {
                                 onClick={() => startEditing(task)}
                                 title="Edit task"
                               >
-                                pencel icon
+                                Edit
                               </button>
 
                               <button
