@@ -307,28 +307,29 @@ function App() {
                                 ✕
                               </button>
                             </div>
-                            <h4>{task.title}</h4>
-                            <p>{task.description}</p>
+                          </div>
 
-                            <div className="task-actions">
-                              {columnIndex > 0 && (
-                                <button
-                                  className="move-btn back-btn"
-                                  onClick={() => moveTask(task.id, -1)}
-                                >
-                                  ◀ Back
-                                </button>
-                              )}
+                          <h4>{task.title}</h4>
+                          <p>{task.description}</p>
 
-                              {columnIndex < COLUMNS.length - 1 && (
-                                <button
-                                  className="move-btn forward-btn"
-                                  onClick={() => moveTask(task.id, 1)}
-                                >
-                                  Next ▶
-                                </button>
-                              )}
-                            </div>
+                          <div className="task-actions">
+                            {columnIndex > 0 && (
+                              <button
+                                className="move-btn back-btn"
+                                onClick={() => moveTask(task.id, -1)}
+                              >
+                                ◀ Back
+                              </button>
+                            )}
+
+                            {columnIndex < COLUMNS.length - 1 && (
+                              <button
+                                className="move-btn forward-btn"
+                                onClick={() => moveTask(task.id, 1)}
+                              >
+                                Next ▶
+                              </button>
+                            )}
                           </div>
                         </>
                       )}
