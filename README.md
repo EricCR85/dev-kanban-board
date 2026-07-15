@@ -1,16 +1,37 @@
-# React + Vite
+# 📋 Dev Kanban Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive, and responsive Kanban Board built with **React**, **Vite**, and styled with custom modern **CSS**. This project is designed for developers and teams to track tasks, organize workflows, and manage daily productivity seamlessly.
 
-Currently, two official plugins are available:
+🔗 **[Live Demo on Vercel](https://dev-kanban-board.vercel.app/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Full Task Lifecycle:** Create, edit, update, and delete tasks dynamically.
+- **Categorized Workflow:** Tasks are organized cleanly into progression columns.
+- **Local Storage Persistence:** Your tasks are saved automatically, so they survive browser refreshes!
+- **Smooth Layout:** A fully responsive, clean CSS Flexbox/Grid layout that works beautifully on desktop and mobile.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- **Frontend Library:** React (Functional Components, Hooks)
+- **Build Tool:** Vite (for ultra-fast development)
+- **Styling:** Custom Vanilla CSS (Variables, Flexbox, CSS Grid)
+- **Deployment:** Vercel (Continuous Integration/Continuous Deployment)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+You will need [Node.js](https://nodejs.org/) installed on your machine.
+
+### Installation & Local Setup
+
+1. **Clone the repository:**
+```bash
+git clone [https://github.com/EricCR85/dev-kanban-board.git](https://github.com/EricCR85/dev-kanban-board.git)
