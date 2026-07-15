@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 
 const COLUMNS = [
   { id: "todo", title: "To Do", color: "#3b82f6" },
