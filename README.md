@@ -23,8 +23,17 @@ A sleek, fully interactive Kanban board built with React and Vite, designed to h
 
 ---
 
+## 🔗 Live Demo
+
+[View the live project](https://dev-kanban-board.vercel.app/)
+
+---
+
 ## 🚀 Getting Started
 
-### 1. Clone the repository
 ```bash
-git clone [https://github.com/EricCR85/dev-kanban-board.git](https://github.com/EricCR85/dev-kanban-board.git)
+git clone https://github.com/EricCR85/dev-kanban-board.git
+cd dev-kanban-board
+npm install
+npm run dev
+```
