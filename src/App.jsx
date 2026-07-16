@@ -37,7 +37,7 @@ const DEFAULT_TASKS = [
 
 function App() {
   const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem("kanban-task");
+    const savedTasks = localStorage.getItem("kanban-tasks");
     if (savedTasks) {
       const parsed = JSON.parse(savedTasks);
       return parsed.length > 0 ? parsed : DEFAULT_TASKS;
