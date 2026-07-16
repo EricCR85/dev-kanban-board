@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import TaskCard from "./components/TaskCard";
 import KanbanColumn from "./components/KanbanColumn";
 import Toolbar from "./components/Toolbar";
 import TaskForm from "./components/TaskForm";
@@ -40,7 +39,7 @@ function App() {
     const savedTasks = localStorage.getItem("kanban-tasks");
     if (savedTasks) {
       const parsed = JSON.parse(savedTasks);
-      return parsed.length > 0 ? parsed : DEFAULT_TASKS;
+      return parsed
     }
     return DEFAULT_TASKS;
   });

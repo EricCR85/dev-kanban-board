@@ -1,4 +1,3 @@
-import React from "react";
 
 const TaskCard = ({
   task,
@@ -21,7 +20,7 @@ const TaskCard = ({
   return (
     <div
       key={task.id}
-      className={"task-card priority-${task.priority.toLowerCase()}"}
+      className="task-card"
       draggable
       onDragStart={handleDragStart}
     >

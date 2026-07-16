@@ -1,37 +1,30 @@
-# 📋 Dev Kanban Board
+# 📋 Dev Board - Interactive Kanban Workspace
 
-A modern, interactive, and responsive Kanban Board built with **React**, **Vite**, and styled with custom modern **CSS**. This project is designed for developers and teams to track tasks, organize workflows, and manage daily productivity seamlessly.
-
-🔗 **[Live Demo on Vercel](https://dev-kanban-board.vercel.app/)**
+A sleek, fully interactive Kanban board built with React and Vite, designed to help developers organize and track their workflows. This project showcases advanced React state management, seamless local storage persistence, and native HTML5 Drag-and-Drop capabilities.
 
 ---
 
 ## ✨ Features
 
-- **Full Task Lifecycle:** Create, edit, update, and delete tasks dynamically.
-- **Categorized Workflow:** Tasks are organized cleanly into progression columns.
-- **Local Storage Persistence:** Your tasks are saved automatically, so they survive browser refreshes!
-- **Smooth Layout:** A fully responsive, clean CSS Flexbox/Grid layout that works beautifully on desktop and mobile.
+* **Native Drag-and-Drop:** Seamlessly drag task cards across workflow columns using the native HTML5 Drag and Drop API.
+* **Inline Task Editing:** Create new tasks, update titles and descriptions on the fly, or delete tasks directly from the board.
+* **Priority Management & Filtering:** Tag tasks as *High, Medium, or Low* priority and instantly filter the board view via the toolbar.
+* **Persistent Workspace:** State is saved automatically to `localStorage`, ensuring your board stays exactly as you left it even after a page refresh.
+* **Board Control Actions:** Clear the entire board for a fresh start or reset to a default set of tasks with a single click.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-- **Frontend Library:** React (Functional Components, Hooks)
-- **Build Tool:** Vite (for ultra-fast development)
-- **Styling:** Custom Vanilla CSS (Variables, Flexbox, CSS Grid)
-- **Deployment:** Vercel (Continuous Integration/Continuous Deployment)
+* **Frontend Framework:** React 19 (Vite)
+* **Drag-and-Drop:** Native HTML5 Drag and Drop API
+* **Styling:** Custom CSS Flexbox & Grid layout
+* **State & Persistence:** React Hooks (`useState`, `useEffect`) & Web Storage API (`localStorage`)
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-You will need [Node.js](https://nodejs.org/) installed on your machine.
-
-### Installation & Local Setup
-
-1. **Clone the repository:**
+### 1. Clone the repository
 ```bash
 git clone [https://github.com/EricCR85/dev-kanban-board.git](https://github.com/EricCR85/dev-kanban-board.git)

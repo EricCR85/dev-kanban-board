@@ -1,4 +1,3 @@
-import React from "react";
 import TaskCard from "./TaskCard";
 
 const KanbanColumn = ({
@@ -9,7 +8,6 @@ const KanbanColumn = ({
   startEditing,
   deleteTask,
   moveTask,
-  isEditing,
   editTitle,
   setEditTitle,
   editDesc,

@@ -1,4 +1,3 @@
-import React from "react";
 
 const Toolbar = ({
   searchTerm,
@@ -29,7 +28,7 @@ const Toolbar = ({
           <option value="All">All</option>
           <option value="High">High</option>
           <option value="Medium">Medium</option>
-          <option value="Low">Lowl</option>
+          <option value="Low">Low</option>
         </select>
       </div>
 
