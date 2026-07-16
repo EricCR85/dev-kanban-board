@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import TaskCard from "./components/TaskCard";
+import KanbanColumn from "./components/KanbanColumn";
 
 const COLUMNS = [
   { id: "todo", title: "To Do", color: "#3b82f6" },
@@ -33,8 +35,12 @@ const DEFAULT_TASKS = [
 
 function App() {
   const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem("kanban-tasks");
-    return savedTasks ? JSON.parse(savedTasks) : DEFAULT_TASKS;
+    const savedTasks = localStorage.getItem("kanban-task");
+    if (savedTasks) {
+      const parsed = JSON.parse(savedTasks);
+      return parsed.length > 0 ? parsed : DEFAULT_TASKS;
+    }
+    return DEFAULT_TASKS;
   });
 
   const [taskTitle, setTaskTitle] = useState("");
@@ -45,7 +51,7 @@ function App() {
   const [filterPriority, setFilterPriority] = useState("All");
 
   const [editingTaskId, setEditingTaskId] = useState(null);
-  const [editTitle, setEditTitie] = useState("");
+  const [editTitle, setEditTitle] = useState("");
   const [editDesc, setEditDesc] = useState("");
 
   useEffect(() => {
@@ -115,13 +121,13 @@ function App() {
 
   const startEditing = (task) => {
     setEditingTaskId(task.id);
-    setEditTitie(task.title);
+    setEditTitle(task.title);
     setEditDesc(task.description);
   };
 
   const cancelEditing = () => {
     setEditingTaskId(null);
-    setEditTitie("");
+    setEditTitle("");
     setEditDesc("");
   };
 
@@ -220,128 +226,37 @@ function App() {
             .filter((task) => task.columnId === column.id)
             .filter((task) => {
               const matchesSearch =
-                task.title
-                  .toLowerCase()
-                  .includes(searchTerm.toLocaleLowerCase()) ||
+                task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 task.description
-                  .toLocaleLowerCase()
-                  .includes(searchTerm.toLocaleLowerCase());
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase());
               return matchesSearch;
             })
             .filter((task) => {
               if (filterPriority === "All") return true;
               return task.priority === filterPriority;
             });
-
           return (
-            <div key={column.id} className="kanban-column">
-              <div
-                className="column-header"
-                style={{ borderTop: `4px solid ${column.color}` }}
-              >
-                <h3>{column.title}</h3>
-                <span className="task-count">{columnTasks.length}</span>
-              </div>
-
-              <div className="column-body">
-                {columnTasks.map((task) => {
-                  const isEditing = editingTaskId === task.id;
-
-                  return (
-                    <div key={task.id} className="task-card">
-                      {isEditing ? (
-                        <div className="edit-mode-form">
-                          <input
-                            type="text"
-                            value={editTitle}
-                            onChange={(e) => setEditTitie(e.target.value)}
-                            className="edit-input-title"
-                            placeholder="Edit Title..."
-                            required
-                          />
-                          <textarea
-                            value={editDesc}
-                            onChange={(e) => setEditDesc(e.target.value)}
-                            className="edit-textarea-desc"
-                            placeholder="Edit Description..."
-                          />
-                          <div className="edit-mode-actions">
-                            <button
-                              className="save-btn"
-                              onClick={() => saveEditedTask(task.id)}
-                            >
-                              Save
-                            </button>
-                            <button
-                              className="cancel-btn"
-                              onClick={cancelEditing}
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="task-card-header">
-                            <span
-                              className={`priority-badge priority-${task.priority.toLowerCase()}`}
-                            >
-                              {task.priority}
-                            </span>
-
-                            <div className="card-top-controls">
-                              <button
-                                className="edit-btn"
-                                onClick={() => startEditing(task)}
-                                title="Edit task"
-                              >
-                                Edit
-                              </button>
-
-                              <button
-                                className="delete-btn"
-                                onClick={() => deleteTask(task.id)}
-                                title="Delete Task"
-                              >
-                                ✕
-                              </button>
-                            </div>
-                          </div>
-
-                          <h4>{task.title}</h4>
-                          <p>{task.description}</p>
-
-                          <div className="task-actions">
-                            {columnIndex > 0 && (
-                              <button
-                                className="move-btn back-btn"
-                                onClick={() => moveTask(task.id, -1)}
-                              >
-                                ◀ Back
-                              </button>
-                            )}
-
-                            {columnIndex < COLUMNS.length - 1 && (
-                              <button
-                                className="move-btn forward-btn"
-                                onClick={() => moveTask(task.id, 1)}
-                              >
-                                Next ▶
-                              </button>
-                            )}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
-                {columnTasks.length === 0 && (
-                  <div className="empty-column-state">No tasks here</div>
-                )}
-              </div>
-            </div>
-          );
-        })}
+            <KanbanColumn
+              key={column.id}
+              column={column}
+              columnTasks={columnTasks}
+              columnIndex={columnIndex}
+              COLUMNS={COLUMNS}
+              startEditing={startEditing}
+              deleteTask={deleteTask}
+              moveTask={moveTask}
+              editTitle={editTitle}
+              setEditTitle={setEditTitle}
+              editDesc={editDesc}
+              setEditDesc={setEditDesc}
+              saveEditedTask={saveEditedTask}
+              cancelEditing={cancelEditing}
+              editingTaskId={editingTaskId}
+              
+              />
+            );
+          })}
       </main>
     </div>
   );
