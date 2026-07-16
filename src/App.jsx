@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import TaskCard from "./components/TaskCard";
 import KanbanColumn from "./components/KanbanColumn";
+import Toolbar from "./components/Toolbar";
+import TaskForm from "./components/TaskForm";
 
 const COLUMNS = [
   { id: "todo", title: "To Do", color: "#3b82f6" },
@@ -83,6 +85,13 @@ function App() {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
+  const handleDragComplete = (taskId, targetColumnId) => {
+    setTasks((prevTasks) => 
+    prevTasks.map((task) =>
+    task.id === taskId ? { ...task, columnId: targetColumnId } : task
+  ))
+  }
+
   const handleClearBoard = () => {
     if (window.confirm("Are you sure you want to delete ALL tasks?")) {
       setTasks([]);
@@ -154,71 +163,26 @@ function App() {
       <header className="kanban-header">
         <h1>Dev Board</h1>
         <p>Manage your sprint tasks and workflow</p>
-
-        <div className="board-controls">
-          <button type="button" onClick={handleResetDefaults}>
-            Reset Default Tasks
-          </button>
-          <button
-            type="button"
-            onClick={handleClearBoard}
-            style={{ marginLeft: "10px" }}
-          >
-            Clear Entire Board
-          </button>
-        </div>
       </header>
 
-      <section className="toolbar-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search tasks by title or description..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="filter-priority">
-          <label htmlFor="priority-filter">Priority:</label>
-          <select
-            id="priority-filter"
-            value={filterPriority}
-            onChange={(e) => setFilterPriority(e.target.value)}
-          >
-            <option value="All">All Priorities</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
-        </div>
-      </section>
+      <Toolbar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filterPriority={filterPriority}
+        setFilterPriority={setFilterPriority}
+        handleResetDefaults={handleResetDefaults}
+        handleClearBoard={handleClearBoard}
+      />
 
-      <section className="add-task-section">
-        <form onSubmit={handleAddTask}>
-          <input
-            type="text"
-            placeholder="Task Title..."
-            value={taskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Task Description..."
-            value={taskDesc}
-            onChange={(e) => setTaskDesc(e.target.value)} // Fixed handler
-          />
-          <select
-            value={taskPriority}
-            onChange={(e) => setTaskPriority(e.target.value)}
-          >
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
-          <button type="submit">Add Task</button>
-        </form>
-      </section>
+      <TaskForm
+        taskTitle={taskTitle}
+        setTaskTitle={setTaskTitle}
+        taskDesc={taskDesc}
+        setTaskDesc={setTaskDesc}
+        taskPriority={taskPriority}
+        setTaskPriority={setTaskPriority}
+        handleAddTask={handleAddTask}
+      />
 
       <main className="kanban-board">
         {COLUMNS.map((column, columnIndex) => {
@@ -253,10 +217,10 @@ function App() {
               saveEditedTask={saveEditedTask}
               cancelEditing={cancelEditing}
               editingTaskId={editingTaskId}
-              
-              />
-            );
-          })}
+              handleDragComplete={handleDragComplete}
+            />
+          );
+        })}
       </main>
     </div>
   );

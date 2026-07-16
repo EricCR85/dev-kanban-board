@@ -17,9 +17,25 @@ const KanbanColumn = ({
   saveEditedTask,
   cancelEditing,
   editingTaskId,
+  handleDragComplete,
 }) => {
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  }
+
+const handleDrop = (e) => {
+  e.preventDefault();
+  const taskId = Number(e.dataTransfer.getData("text/plain"));
+  if (taskId) {
+    handleDragComplete(taskId, column.id)
+  }
+}
+
   return (
-    <div key={column.id} className="kanban-column">
+    <div key={column.id} className="kanban-column"
+    onDragOver={handleDragOver}
+    onDrop={handleDrop}>
       <div
         className="column-header"
         style={{ borderTop: `4px solid ${column.color}` }}
@@ -31,23 +47,24 @@ const KanbanColumn = ({
       <div className="column-body">
         {columnTasks.map((task) => {
           const isEditing = editingTaskId === task.id;
-
-          <TaskCard
-            key={task.id}
-            task={task}
-            columnIndex={columnIndex}
-            COLUMNS={COLUMNS}
-            startEditing={startEditing}
-            deleteTask={deleteTask}
-            moveTask={moveTask}
-            isEditing={isEditing}
-            editTitle={editTitle}
-            setEditTitle={setEditTitle}
-            editDesc={editDesc}
-            setEditDesc={setEditDesc}
-            saveEditedTask={saveEditedTask}
-            cancelEditing={cancelEditing}
-          />;
+          return (
+            <TaskCard
+              key={task.id}
+              task={task}
+              columnIndex={columnIndex}
+              COLUMNS={COLUMNS}
+              startEditing={startEditing}
+              deleteTask={deleteTask}
+              moveTask={moveTask}
+              isEditing={isEditing}
+              editTitle={editTitle}
+              setEditTitle={setEditTitle}
+              editDesc={editDesc}
+              setEditDesc={setEditDesc}
+              saveEditedTask={saveEditedTask}
+              cancelEditing={cancelEditing}
+            />
+          );
         })}
         {columnTasks.length === 0 && (
           <div className="empty-column-state">No tasks here</div>

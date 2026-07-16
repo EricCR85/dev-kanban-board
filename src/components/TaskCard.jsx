@@ -15,8 +15,16 @@ const TaskCard = ({
   saveEditedTask,
   cancelEditing,
 }) => {
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("text/plan", task.id);
+  };
   return (
-    <div key={task.id} className="task-card">
+    <div
+      key={task.id}
+      className={"task-card priority-${task.priority.toLowerCase()}"}
+      draggable
+      onDragStart={handleDragStart}
+    >
       {isEditing ? (
         <div className="edit-mode-form">
           <input
