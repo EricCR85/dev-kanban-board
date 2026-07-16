@@ -16,7 +16,7 @@ const TaskCard = ({
   cancelEditing,
 }) => {
   const handleDragStart = (e) => {
-    e.dataTransfer.setData("text/plan", task.id);
+    e.dataTransfer.setData("text/plain", task.id.toString());
   };
   return (
     <div
@@ -68,7 +68,7 @@ const TaskCard = ({
                 onClick={() => startEditing(task)}
                 title="Edit task"
               >
-                Edit
+                ✏
               </button>
 
               <button
@@ -76,7 +76,7 @@ const TaskCard = ({
                 onClick={() => deleteTask(task.id)}
                 title="Delete Task"
               >
-                ✕
+                ❌
               </button>
             </div>
           </div>
