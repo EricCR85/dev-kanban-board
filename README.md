@@ -20,20 +20,19 @@ A sleek, fully interactive Kanban board built with React and Vite, designed to h
 * **Drag-and-Drop:** Native HTML5 Drag and Drop API
 * **Styling:** Custom CSS Flexbox & Grid layout
 * **State & Persistence:** React Hooks (`useState`, `useEffect`) & Web Storage API (`localStorage`)
+* **Testing:** Vitest, jsdom, React Testing Library
 
 ---
 
 ## 🔗 Live Demo
 
-[View the live project](https://dev-kanban-board.vercel.app/)
+[View the live project on Vercel](https://dev-kanban-board.vercel.app/)
 
 ---
 
-## 🚀 Getting Started
+## 🧪 Testing
+
+This project includes an automated test suite configured with Vitest and React Testing Library. To run the test suite locally:
 
 ```bash
-git clone https://github.com/EricCR85/dev-kanban-board.git
-cd dev-kanban-board
-npm install
-npm run dev
-```
+npx vitest
