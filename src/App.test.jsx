@@ -3,13 +3,13 @@ import { expect, test, vi } from "vitest";
 import App from "./App";
 
 const localStorageMock = {
-  getItem: vi.fn(() => null),
-  setItem: vi.fn(),
-  clear: vi.fn(),
+getItem: vi.fn(() => null),
+setItem: vi.fn(),
+clear: vi.fn(),
 };
 global.localStorage = localStorageMock;
 
-test("renders app without crashing", () => {
-  const { container } = render(<App />);
-  expect(container).toBeTruthy();
+test("renders Kanban board application without crashing", () => {
+const { container } = render(<App />);
+expect(container).toBeTruthy();
 });
